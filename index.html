@@ -123,7 +123,7 @@
   .api-tabs{display:flex;gap:4px;margin-bottom:12px;}
   .api-tab{font-size:12px;padding:5px 11px;border-radius:6px;cursor:pointer;color:var(--text2);background:transparent;border:none;font-family:var(--font);}
   .api-tab.active{background:var(--bg2);color:var(--text);font-weight:600;}
-  .code-dark{background:#0d1117;border:0.5px solid #1f2937;border-radius:var(--radius-lg);padding:20px 24px;font-family:var(--mono);font-size:12px;line-height:1.8;overflow-x:auto;}
+  .code-dark{background:#0d1117;border:0.5px solid #1f2937;border-radius:var(--radius-lg);padding:20px 24px;font-family:var(--mono);font-size:12px;line-height:1.8;overflow-x:auto;color:#e2e8f0;}
   .code-light{border:0.5px solid var(--border);border-radius:var(--radius-lg);padding:20px 24px;font-family:var(--mono);font-size:12px;line-height:1.8;color:var(--text2);}
   .rk{color:var(--text);font-weight:600;}.rs{color:var(--green);}.rn{color:#2563eb;}
   .res-lbl{font-size:11px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:12px;}
@@ -356,10 +356,10 @@
     .data-grid4{grid-template-columns:repeat(2,1fr);}
     .report-right{flex-direction:column;align-items:flex-end;gap:6px;}
     .status-hero,.status-components{padding-left:20px;padding-right:20px;}
-    .tabs-bar{padding:0 20px;top:102px;}
+    #docs-mobile-bar{display:flex !important;}
+    .tabs-bar{top:0;}
     .docs-layout{grid-template-columns:1fr;}
-    .sidebar{display:none;position:fixed;top:0;left:0;bottom:0;width:280px;height:100vh;z-index:400;}
-    .sidebar.open{display:block;}
+    .docs-layout .sidebar{display:none;}
     .doc-content{padding:32px 20px;}
     .footer{padding:40px 20px 28px;}.footer-top{grid-template-columns:1fr 1fr;gap:28px;}
     .diff-table{overflow-x:auto;}
@@ -644,8 +644,26 @@
   <footer class="footer"><div class="footer-bottom"><div class="footer-copy">A Blue Pillow product · © 2026</div><div class="footer-legal"><span>Privacy</span><span>Terms</span><span>Cookies</span></div></div></footer>
 </div>
 
+<script>
+function toggleDocsMobileMenu(){var m=document.getElementById('docs-mobile-menu');if(m)m.style.display=m.style.display==='block'?'none':'block';}
+function showDoc(id,el,lbl){document.querySelectorAll('.doc-sec').forEach(function(s){s.classList.remove('visible');});document.querySelectorAll('.sidebar-link').forEach(function(l){l.classList.remove('active');});var s=document.getElementById('doc-'+id);if(s)s.classList.add('visible');if(el)el.classList.add('active');var ml=document.getElementById('docs-current-label');if(ml)ml.textContent=lbl;var m=document.getElementById('docs-mobile-menu');if(m)m.style.display='none';}
+</script>
 <!-- DOCS -->
 <div id="pg-docs" class="page">
+  <div id="docs-mobile-bar" style="display:none;position:sticky;top:0;z-index:90;background:var(--bg);border-bottom:0.5px solid var(--border);padding:10px 20px;align-items:center;justify-content:space-between;gap:12px;">
+    <span id="docs-current-label" style="font-size:13px;font-weight:500;color:var(--text)">Quickstart</span>
+    <button id="docs-sections-btn" style="font-size:12px;font-weight:600;padding:6px 14px;border-radius:var(--radius);border:0.5px solid var(--border2);background:transparent;color:var(--text);cursor:pointer;font-family:var(--font);white-space:nowrap;">☰ Sections</button>
+    <div id="docs-mobile-menu" style="display:none;position:absolute;top:100%;left:0;right:0;background:var(--bg);border-bottom:0.5px solid var(--border);z-index:100;">
+      <div style="font-size:11px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:0.08em;padding:14px 20px 6px;">Getting started</div>
+      <button class="docs-nav-btn" data-id="qs" data-lbl="Quickstart" style="display:block;width:100%;text-align:left;padding:11px 20px;font-size:14px;color:var(--text);background:none;border:none;border-top:0.5px solid var(--border);font-family:var(--font);cursor:pointer;">Quickstart</button>
+      <button class="docs-nav-btn" data-id="auth" data-lbl="Authentication" style="display:block;width:100%;text-align:left;padding:11px 20px;font-size:14px;color:var(--text);background:none;border:none;border-top:0.5px solid var(--border);font-family:var(--font);cursor:pointer;">Authentication</button>
+      <div style="font-size:11px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:0.08em;padding:14px 20px 6px;border-top:0.5px solid var(--border);">API reference</div>
+      <button class="docs-nav-btn" data-id="decide" data-lbl="POST /decide" style="display:block;width:100%;text-align:left;padding:11px 20px;font-size:14px;color:var(--text);background:none;border:none;border-top:0.5px solid var(--border);font-family:var(--font);cursor:pointer;">POST /decide</button>
+      <button class="docs-nav-btn" data-id="alts" data-lbl="GET /alternatives" style="display:block;width:100%;text-align:left;padding:11px 20px;font-size:14px;color:var(--text);background:none;border:none;border-top:0.5px solid var(--border);font-family:var(--font);cursor:pointer;">GET /alternatives</button>
+      <button class="docs-nav-btn" data-id="validate" data-lbl="POST /validate" style="display:block;width:100%;text-align:left;padding:11px 20px;font-size:14px;color:var(--text);background:none;border:none;border-top:0.5px solid var(--border);font-family:var(--font);cursor:pointer;">POST /validate</button>
+      <button class="docs-nav-btn" data-id="search" data-lbl="GET /search" style="display:block;width:100%;text-align:left;padding:11px 20px;font-size:14px;color:var(--text);background:none;border:none;border-top:0.5px solid var(--border);font-family:var(--font);cursor:pointer;">GET /search</button>
+    </div>
+  </div>
   <div class="docs-layout">
     <aside class="sidebar" id="docs-sidebar-inline">
       <div class="sidebar-section"><div class="sidebar-title">Getting started</div><button class="sidebar-link active" onclick="showDoc('qs',this,'Quickstart')">Quickstart</button><button class="sidebar-link" onclick="showDoc('auth',this,'Authentication')">Authentication</button></div>
@@ -778,8 +796,8 @@ function showDoc(id,el,lbl){
   document.getElementById('mbar-label').textContent=lbl;
   closeDocsSidebar();
 }
-function openDocsSidebar(){document.getElementById('docs-sidebar').classList.add('open');document.getElementById('sidebar-overlay').classList.add('open');}
-function closeDocsSidebar(){document.getElementById('docs-sidebar').classList.remove('open');document.getElementById('sidebar-overlay').classList.remove('open');}
+function openDocsSidebar(){var s=document.getElementById('docs-sidebar');if(s)s.classList.add('open');document.getElementById('sidebar-overlay').classList.add('open');}
+function closeDocsSidebar(){var s=document.getElementById('docs-sidebar');if(s)s.classList.remove('open');document.getElementById('sidebar-overlay').classList.remove('open');}
 
 // Tabs
 function switchTab(id,el){document.querySelectorAll('.tab-content').forEach(t=>t.classList.remove('visible'));document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));document.getElementById('tab-'+id).classList.add('visible');el.classList.add('active');}
@@ -787,6 +805,9 @@ function switchTab(id,el){document.querySelectorAll('.tab-content').forEach(t=>t
 // Mobile nav
 function openMobileSidebar(){document.getElementById('mobile-sidebar').classList.add('open');document.getElementById('sidebar-overlay').classList.add('open');}
 function closeMobileSidebar(){document.getElementById('mobile-sidebar').classList.remove('open');document.getElementById('docs-sidebar').classList.remove('open');document.getElementById('sidebar-overlay').classList.remove('open');}
+
+function openDocsMobileMenu(){document.getElementById('docs-mobile-menu').style.display='block';}
+function closeDocsMobileMenu(){document.getElementById('docs-mobile-menu').style.display='none';}
 
 // Press
 let pressUnlocked=false;
@@ -812,6 +833,29 @@ function submitSignup(){const co=document.getElementById('sf-company').value,em=
     const li=document.createElement('div');li.style.cssText='font-size:9px;color:var(--text3);flex:1;text-align:center';li.textContent=m.n;l.appendChild(li);
   });
 })();
+
+// Docs mobile menu via addEventListener (no onclick attributes)
+var sectionsBtn = document.getElementById('docs-sections-btn');
+if(sectionsBtn){
+  sectionsBtn.addEventListener('click', function(){
+    var m = document.getElementById('docs-mobile-menu');
+    if(m) m.style.display = m.style.display === 'block' ? 'none' : 'block';
+  });
+}
+document.querySelectorAll('.docs-nav-btn').forEach(function(btn){
+  btn.addEventListener('click', function(){
+    var id = btn.getAttribute('data-id');
+    var lbl = btn.getAttribute('data-lbl');
+    document.querySelectorAll('.doc-sec').forEach(function(s){ s.classList.remove('visible'); });
+    document.querySelectorAll('.sidebar-link').forEach(function(l){ l.classList.remove('active'); });
+    var sec = document.getElementById('doc-' + id);
+    if(sec) sec.classList.add('visible');
+    var ml = document.getElementById('docs-current-label');
+    if(ml) ml.textContent = lbl;
+    var m = document.getElementById('docs-mobile-menu');
+    if(m) m.style.display = 'none';
+  });
+});
 
 // Uptime bars
 function mkBars(id,inc){const el=document.getElementById(id);if(!el)return;for(let i=0;i<45;i++){const b=document.createElement('div');b.className='u-bar'+(inc&&i===28?' inc':'');b.style.height=(16+Math.random()*12)+'px';el.appendChild(b);}}
