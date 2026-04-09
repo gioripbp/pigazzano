@@ -360,6 +360,9 @@
     .tabs-bar{top:0;}
     .docs-layout{grid-template-columns:1fr;}
     .docs-layout .sidebar{display:none;}
+    #pg-product .sec-label, #pg-product h1, #pg-product h2, #pg-product p { padding-left: 0; }
+    #pg-product > div { padding-left: 20px !important; padding-right: 20px !important; }
+    #pg-product [style*="grid-template-columns:1fr 1fr"], #pg-product [style*="grid-template-columns:repeat(3"], #pg-product [style*="grid-template-columns:repeat(4"] { grid-template-columns: 1fr !important; }
     .doc-content{padding:32px 20px;max-width:100%;overflow-x:hidden;}
     .code-dark, .code-light{font-size:11px;overflow-x:auto;word-break:break-all;}
     .footer{padding:40px 20px 28px;}.footer-top{grid-template-columns:1fr 1fr;gap:28px;}
@@ -391,6 +394,7 @@
 <div class="mobile-sidebar" id="mobile-sidebar">
   <div class="mobile-sidebar-close" onclick="closeMobileSidebar()">✕ Close</div>
   <button class="mobile-sidebar-link" onclick="go('home')">Home</button>
+  <button class="mobile-sidebar-link" onclick="go('product')">Product</button>
   <button class="mobile-sidebar-link" onclick="go('docs')">Docs</button>
   <button class="mobile-sidebar-link" onclick="go('changelog')">Status</button>
   <button class="mobile-sidebar-link" onclick="go('blog')">Blog</button>
@@ -586,6 +590,118 @@
   </footer>
 </div>
 
+<!-- PRODUCT -->
+<div id="pg-product" class="page">
+
+  <div style="padding:72px 48px 56px;border-bottom:0.5px solid var(--border);max-width:760px;">
+    <div class="sec-label">Product</div>
+    <h1 style="font-size:42px;font-weight:700;line-height:1.13;letter-spacing:-0.025em;color:var(--text);margin:0 0 20px;">The decision engine for travel booking.</h1>
+    <p style="font-size:19px;color:var(--text2);line-height:1.7;margin:0 0 32px;">Pigazzano sits between AI agents and OTAs. It aggregates availability and pricing from 16+ sources, applies a proprietary ranking model, and returns a single booking decision — not a list.</p>
+    <button onclick="go('signup')" style="background:#1D9E75;color:#04342C;font-size:14px;font-weight:700;padding:12px 24px;border-radius:var(--radius);border:none;cursor:pointer;font-family:var(--font);margin-right:16px;">Get API access</button>
+    <button onclick="go('docs')" style="background:transparent;color:var(--text2);font-size:14px;padding:12px 0;border:none;cursor:pointer;font-family:var(--font);">Read the docs →</button>
+  </div>
+
+  <!-- THE PROBLEM -->
+  <div style="padding:64px 48px;border-bottom:0.5px solid var(--border);max-width:760px;">
+    <div class="sec-label">The problem</div>
+    <h2 style="font-size:28px;font-weight:600;letter-spacing:-0.02em;color:var(--text);margin:0 0 20px;line-height:1.2;">AI agents need decisions, not options.</h2>
+    <p style="font-size:16px;color:var(--text2);line-height:1.75;margin:0 0 16px;">When an AI agent needs to book a hotel, it can't present the user with 200 results and ask them to choose. It needs to pick one — confidently, immediately, correctly.</p>
+    <p style="font-size:16px;color:var(--text2);line-height:1.75;margin:0 0 16px;">Today's travel APIs return lists. They return prices. They return data. None of them return a decision. That gap is what Pigazzano fills.</p>
+    <div style="margin-top:32px;display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+      <div style="border:0.5px solid var(--border);border-radius:var(--radius-lg);padding:24px;background:var(--bg2);">
+        <div style="font-size:13px;font-weight:600;color:var(--text3);margin-bottom:10px;text-transform:uppercase;letter-spacing:0.06em;">Without Pigazzano</div>
+        <div style="font-size:14px;color:var(--text2);line-height:1.7;">Your agent calls 16 OTAs, receives thousands of results, implements its own ranking logic, and still guesses. Every team rebuilds the same wheel.</div>
+      </div>
+      <div style="border:0.5px solid var(--green);border-radius:var(--radius-lg);padding:24px;background:var(--bg);">
+        <div style="font-size:13px;font-weight:600;color:var(--green);margin-bottom:10px;text-transform:uppercase;letter-spacing:0.06em;">With Pigazzano</div>
+        <div style="font-size:14px;color:var(--text2);line-height:1.7;">One API call. One hotel. One OTA. One confidence score. Ready to book. Your agent executes, it doesn't decide.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- HOW IT WORKS -->
+  <div style="padding:64px 48px;border-bottom:0.5px solid var(--border);background:var(--bg2);">
+    <div class="sec-label">How it works</div>
+    <h2 style="font-size:28px;font-weight:600;letter-spacing:-0.02em;color:var(--text);margin:0 0 40px;line-height:1.2;">Four layers. One answer.</h2>
+    <div style="display:flex;flex-direction:column;gap:0;">
+      <div style="display:grid;grid-template-columns:48px 1fr;gap:20px;padding:24px 0;border-bottom:0.5px solid var(--border);align-items:start;">
+        <div style="width:40px;height:40px;border-radius:50%;background:var(--green-light);border:0.5px solid var(--green);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;color:var(--green-dark);">1</div>
+        <div><div style="font-size:16px;font-weight:600;color:var(--text);margin-bottom:6px;">Aggregation</div><div style="font-size:14px;color:var(--text2);line-height:1.7;">We simultaneously query 16+ OTAs — Booking.com, Agoda, Expedia, TripCom, and more — normalizing prices, availability, and room types into a unified data model.</div></div>
+      </div>
+      <div style="display:grid;grid-template-columns:48px 1fr;gap:20px;padding:24px 0;border-bottom:0.5px solid var(--border);align-items:start;">
+        <div style="width:40px;height:40px;border-radius:50%;background:var(--green-light);border:0.5px solid var(--green);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;color:var(--green-dark);">2</div>
+        <div><div style="font-size:16px;font-weight:600;color:var(--text);margin-bottom:6px;">Enrichment</div><div style="font-size:14px;color:var(--text2);line-height:1.7;">Each option is enriched with our proprietary signals: historical conversion rates by country and property, cancellation probability, price stability, and offer quality score.</div></div>
+      </div>
+      <div style="display:grid;grid-template-columns:48px 1fr;gap:20px;padding:24px 0;border-bottom:0.5px solid var(--border);align-items:start;">
+        <div style="width:40px;height:40px;border-radius:50%;background:var(--green-light);border:0.5px solid var(--green);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;color:var(--green-dark);">3</div>
+        <div><div style="font-size:16px;font-weight:600;color:var(--text);margin-bottom:6px;">Ranking</div><div style="font-size:14px;color:var(--text2);line-height:1.7;">Our model ranks by booking success probability — not by price alone. A cheaper option with a 45% cancellation rate scores lower than a slightly pricier one with 16%.</div></div>
+      </div>
+      <div style="display:grid;grid-template-columns:48px 1fr;gap:20px;padding:24px 0;align-items:start;">
+        <div style="width:40px;height:40px;border-radius:50%;background:var(--green-light);border:0.5px solid var(--green);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;color:var(--green-dark);">4</div>
+        <div><div style="font-size:16px;font-weight:600;color:var(--text);margin-bottom:6px;">Decision</div><div style="font-size:14px;color:var(--text2);line-height:1.7;">We return one recommended property with a confidence score, plus 2–3 alternatives. Your agent books. No parsing, no logic, no guesswork.</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- WHO IS IT FOR -->
+  <div style="padding:64px 48px;border-bottom:0.5px solid var(--border);">
+    <div class="sec-label">Who it's for</div>
+    <h2 style="font-size:28px;font-weight:600;letter-spacing:-0.02em;color:var(--text);margin:0 0 32px;line-height:1.2;">Built for builders.</h2>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;">
+      <div style="border:0.5px solid var(--border);border-radius:var(--radius-lg);padding:28px;">
+        <div style="font-size:22px;margin-bottom:14px;">⚙️</div>
+        <div style="font-size:15px;font-weight:600;color:var(--text);margin-bottom:8px;">AI agent builders</div>
+        <div style="font-size:13px;color:var(--text2);line-height:1.65;">Building travel agents, concierge bots, or automated booking flows? Pigazzano is the booking brain. You handle the conversation.</div>
+      </div>
+      <div style="border:0.5px solid var(--border);border-radius:var(--radius-lg);padding:28px;">
+        <div style="font-size:22px;margin-bottom:14px;">🏢</div>
+        <div style="font-size:15px;font-weight:600;color:var(--text);margin-bottom:8px;">Travel platforms</div>
+        <div style="font-size:13px;color:var(--text2);line-height:1.65;">OTAs, metasearch engines, and travel management companies that want smarter booking decisions without building the data infrastructure themselves.</div>
+      </div>
+      <div style="border:0.5px solid var(--border);border-radius:var(--radius-lg);padding:28px;">
+        <div style="font-size:22px;margin-bottom:14px;">🔌</div>
+        <div style="font-size:15px;font-weight:600;color:var(--text);margin-bottom:8px;">Infrastructure teams</div>
+        <div style="font-size:13px;color:var(--text2);line-height:1.65;">Engineering teams that need a reliable, neutral routing layer between their systems and OTAs — without managing 16 API integrations.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DATA MOAT -->
+  <div style="padding:64px 48px;border-bottom:0.5px solid var(--border);background:var(--bg2);">
+    <div class="sec-label">The data advantage</div>
+    <h2 style="font-size:28px;font-weight:600;letter-spacing:-0.02em;color:var(--text);margin:0 0 16px;line-height:1.2;">Built on 9 years of booking data.</h2>
+    <p style="font-size:16px;color:var(--text2);line-height:1.75;margin:0 0 36px;max-width:600px;">The ranking model isn't theoretical. It's trained on 1M+ real bookings per year, across 16 OTAs, in 190+ countries. No competitor can replicate this dataset.</p>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;">
+      <div style="background:var(--bg);border-radius:var(--radius-lg);padding:20px 16px;border:0.5px solid var(--border);">
+        <div style="font-size:28px;font-weight:700;color:var(--text);letter-spacing:-0.02em;margin-bottom:4px;">1 TB</div>
+        <div style="font-size:12px;color:var(--text3);line-height:1.4;">Historical booking data</div>
+      </div>
+      <div style="background:var(--bg);border-radius:var(--radius-lg);padding:20px 16px;border:0.5px solid var(--border);">
+        <div style="font-size:28px;font-weight:700;color:var(--text);letter-spacing:-0.02em;margin-bottom:4px;">7M</div>
+        <div style="font-size:12px;color:var(--text3);line-height:1.4;">Deduplicated properties</div>
+      </div>
+      <div style="background:var(--bg);border-radius:var(--radius-lg);padding:20px 16px;border:0.5px solid var(--border);">
+        <div style="font-size:28px;font-weight:700;color:var(--text);letter-spacing:-0.02em;margin-bottom:4px;">285M</div>
+        <div style="font-size:12px;color:var(--text3);line-height:1.4;">Price combinations/day</div>
+      </div>
+      <div style="background:var(--bg);border-radius:var(--radius-lg);padding:20px 16px;border:0.5px solid var(--border);">
+        <div style="font-size:28px;font-weight:700;color:var(--text);letter-spacing:-0.02em;margin-bottom:4px;">0.94</div>
+        <div style="font-size:12px;color:var(--text3);line-height:1.4;">Avg confidence score</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div style="padding:80px 48px;background:#0a0f1a;text-align:center;">
+    <h2 style="font-size:34px;font-weight:700;color:#f0ede8;letter-spacing:-0.025em;margin-bottom:12px;">Ready to integrate?</h2>
+    <p style="font-size:16px;color:#888780;margin-bottom:32px;">Free tier included. No credit card required. Your first 500 decisions are on us.</p>
+    <button onclick="go('signup')" style="background:#1D9E75;color:#04342C;font-size:15px;font-weight:700;padding:13px 28px;border-radius:var(--radius);border:none;cursor:pointer;font-family:var(--font);margin-right:16px;">Get API access →</button>
+    <button onclick="go('docs')" style="background:rgba(255,255,255,0.08);color:#f0ede8;font-size:15px;font-weight:600;padding:13px 28px;border-radius:var(--radius);border:0.5px solid rgba(255,255,255,0.15);cursor:pointer;font-family:var(--font);">Read the docs</button>
+  </div>
+
+  <footer class="footer"><div class="footer-bottom"><div class="footer-copy">A Blue Pillow product · © 2026</div><div class="footer-legal"><span>Privacy</span><span>Terms</span><span>Cookies</span></div></div></footer>
+</div>
+
 <!-- ABOUT -->
 <div id="pg-about" class="page">
   <div class="about-hero"><div class="sec-label">About</div><h1 class="about-h1">We're building the infrastructure layer travel was missing.</h1><p class="about-intro">The travel industry has inventory. It has distribution. What it doesn't have is intelligence — a neutral layer that decides, not just lists. That's what we're building.</p></div>
@@ -750,9 +866,9 @@ function showDoc(id,el,lbl){document.querySelectorAll('.doc-sec').forEach(functi
 </div><!-- end page-wrap -->
 
 <script>
-const PAGES=['home','about','blog','press','docs','changelog','signup'];
-const PAGE_LABELS={home:'Home',docs:'Docs',blog:'Blog',press:'Press',about:'About',changelog:'Status',signup:'Get API access'};
-const NAV_ITEMS=[{id:'home',label:'Home'},{id:'docs',label:'Docs'},{id:'changelog',label:'Status'},{id:'blog',label:'Blog'},{id:'press',label:'Press'},{id:'about',label:'About'}];
+const PAGES=['home','product','about','blog','press','docs','changelog','signup'];
+const PAGE_LABELS={home:'Home',product:'Product',docs:'Docs',blog:'Blog',press:'Press',about:'About',changelog:'Status',signup:'Get API access'};
+const NAV_ITEMS=[{id:'home',label:'Home'},{id:'product',label:'Product'},{id:'docs',label:'Docs'},{id:'changelog',label:'Status'},{id:'blog',label:'Blog'},{id:'press',label:'Press'},{id:'about',label:'About'}];
 
 let currentPage='home';
 
