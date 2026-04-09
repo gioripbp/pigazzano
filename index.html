@@ -31,11 +31,12 @@
 
   #global-nav{
     position:sticky;top:0;left:0;right:0;z-index:200;
-    display:flex;align-items:center;justify-content:space-between;
+    display:flex;align-items:center;gap:32px;
     padding:16px 48px;
     background:var(--bg);
     border-bottom:0.5px solid var(--border);
   }
+  #global-nav #nav-links-desktop{margin-right:auto;}
   #global-mbar{
     position:sticky;top:53px;left:0;right:0;z-index:199;
     display:none;
@@ -330,10 +331,17 @@
 
   /* ── MOBILE ── */
   @media(max-width:768px){
-    #global-nav{position:fixed;padding:14px 20px;}
+    html, body { height: 100%; overflow: hidden; }
+    #global-nav{position:fixed;padding:14px 20px;top:0;left:0;right:0;}
     #global-nav .nav-links,#global-nav .nav-cta{display:none;}
-    #global-mbar{position:fixed;display:flex;}
-    #page-wrap{padding-top:102px;}
+    #global-mbar{position:fixed;display:flex;top:53px;left:0;right:0;}
+    #page-wrap{
+      position:fixed;
+      top:102px;left:0;right:0;bottom:0;
+      overflow-y:auto;
+      -webkit-overflow-scrolling:touch;
+      padding-top:0;
+    }
     .hero{padding:48px 20px 40px;}
     .h-h1{font-size:32px;}
     .numbers-row{grid-template-columns:repeat(2,1fr);}
